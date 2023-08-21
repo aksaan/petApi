@@ -12,7 +12,7 @@ const signup = async (req, res) => {
         return res.status(409).json({ error : 'user with same email already registered'});
     }
 
-    const hashed = await bcrypt.hash(password);
+    const hashed = await bcrypt.hash(password, 10);
     const user = new User({ email, password : hashed, firstname, secondname });
     await user.save();
 
