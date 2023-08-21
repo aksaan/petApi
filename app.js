@@ -1,8 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
+
 const userRouter = require("./routers/userRouter").router;
+
 const app = express();
 app.use(express.json());
+
+app.use("/users", userRouter);
+
 async function main() {
     
     try{
@@ -14,5 +19,5 @@ async function main() {
         return console.log(err);
     }
 }
-app.use("/users", userRouter);
+
 main()

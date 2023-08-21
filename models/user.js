@@ -2,15 +2,15 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema ({
-    name : {
+    firstname : {
         type : String,
         minLength : 3,
         maxLength : 25,
     },
     secondname : {
         type : String,
-        minLength : 3,
         maxLength : 25,
+        required : false
     },
     email : {
         type : String,
