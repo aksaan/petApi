@@ -13,7 +13,7 @@ const signup = async (req, res) => {
     const user = new User({ email, password, firstname, secondname });
     await user.save();
 
-    res.status(201).json({ message : 'user successfully created' });
+    return res.status(201).json({ message : 'user successfully created' });
 
 }
 const signin = async (req, res) => {
