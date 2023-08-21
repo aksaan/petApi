@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 const User = require('../models/user');
 
 const signup = async (req, res) => {
@@ -10,7 +12,8 @@ const signup = async (req, res) => {
         return res.status(409).json({ error : 'user with same email already registered'});
     }
 
-    const user = new User({ email, password, firstname, secondname });
+    const hashed = await bcrypt.hash(password);
+    const user = new User({ email, password : hashed, firstname, secondname });
     await user.save();
 
     return res.status(201).json({ message : 'user successfully created' });
