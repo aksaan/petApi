@@ -1,4 +1,6 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const User = require('../models/user');
 
@@ -20,14 +22,25 @@ const signup = async (req, res) => {
 
 }
 const signin = async (req, res) => {
-    const { name, secondname, email, password} = req.body;
-    const sameLogin = await User.findOne({ email });
-    if(sameLogin && sameLogin.password === password){
-        res.status(200).json({message : 'you successfully signin'});
+    if(!req.body) return res.status(400).json({ error : 'No data' });
+
+    const { email, password} = req.body;
+
+    const user = await User.findOne({ email });
+    if(!user){
+        return res.status(403).json({message : 'no email or incorrect password'});
     }
-    else{
-        res.status(403).json({message : 'no email or incorrect password'});
+
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    if(!isPasswordCorrect){
+        return res.status(403).json({message : 'no email or incorrect password'});
     }
+
+    const secret = process.env.SECRET_KEY;
+    const token = jwt.sign({ id : user._id, firstname : user.firstname, status : user.status }, secret, { expiresIn : '12h' });
+
+    res.status(200).json({ token });
+    
 }
 const deleteUser = async (req, res) => {
     User.destroy({id:req.params.id}).exec(function(err){
