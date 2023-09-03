@@ -2,11 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const userRouter = require("./routers/userRouter").router;
+const shelterRouter = require("./routers/shelterRouter").router;
 
 const app = express();
 app.use(express.json());
 
 app.use("/users", userRouter);
+app.use("/shelter", shelterRouter);
 
 async function main() {
     
