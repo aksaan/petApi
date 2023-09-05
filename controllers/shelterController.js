@@ -9,7 +9,7 @@ const add = async (req, res) => {
         return res.status(404).json({ error : 'missing required fields'});
     }
     console.log("Информация о пользователе", req.user);
-    const owner = req.user._id;
+    const owner = req.user.id;
     const sameOwner = await Shelter.findOne({ owner });
     if (sameOwner){
         return res.status(409).json({ error : 'shelter with same owner already registered'});
