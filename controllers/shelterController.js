@@ -27,5 +27,6 @@ const all = async(req, res) => {
 }
 
 module.exports = {
-    add
+    add,
+    all
 }
