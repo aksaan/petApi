@@ -4,7 +4,6 @@ require('dotenv').config();
 
 const auth = (req, res, next) => {
     const authHeader = req.headers['authorization'];
-    console.log('Попытка авторизации. Заголовок: ', authHeader);
     const token = authHeader && authHeader.split(' ')[1];
 
     if(!token){

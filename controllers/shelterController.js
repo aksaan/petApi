@@ -8,7 +8,6 @@ const add = async (req, res) => {
     if (!ogrn || !title || !email) {
         return res.status(404).json({ error : 'missing required fields'});
     }
-    console.log("Информация о пользователе", req.user);
     const owner = req.user.id;
     const sameOwner = await Shelter.findOne({ owner });
     if (sameOwner){
@@ -21,12 +20,21 @@ const add = async (req, res) => {
     return res.status(201).json({ message : 'shelter successfully created' });
 }
 
-const all = async(req, res) => {
+const shelter = async (req, res) => {
+    let id = req.params.id;
+    Shelter.findById(id).then(shelter => {
+        return res.status(200).json(shelter);
+    })
+    return res.status(404).json({ error : 'shelter not found'})
+}
+
+const all = async (req, res) => {
     const shelters = await Shelter.find();
     res.status(200).json(shelters);
 }
 
 module.exports = {
     add,
-    all
+    all,
+    shelter
 }
