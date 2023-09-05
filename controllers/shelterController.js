@@ -8,10 +8,10 @@ const add = async (req, res) => {
     if (!ogrn || !title || !email) {
         return res.status(404).json({ error : 'missing required fields'});
     }
-    console.log(req.user);
+    console.log("Информация о пользователе", req.user);
     const owner = req.user._id;
     const sameOwner = await Shelter.findOne({ owner });
-    if (sameOwner){
+    if (!sameOwner){
         return res.status(409).json({ error : 'shelter with same owner already registered'});
     }
 
