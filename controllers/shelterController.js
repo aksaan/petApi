@@ -21,11 +21,12 @@ const add = async (req, res) => {
 }
 
 const shelter = async (req, res) => {
-    let id = req.params.id;
-    Shelter.findById(id).then(shelter => {
-        return res.status(200).json(shelter);
-    })
-    return res.status(404).json({ error : 'shelter not found'})
+    const id = req.params.id;
+    const shelter = await Shelter.findById(id);
+        
+    if(!shelter) return res.status(200).json(shelter);
+
+    return res.status(404).json({ error : 'shelter not found'});
 }
 
 const all = async (req, res) => {
