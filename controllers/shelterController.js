@@ -20,6 +20,12 @@ const add = async (req, res) => {
 
     return res.status(201).json({ message : 'shelter successfully created' });
 }
+
+const all = async(req, res) => {
+    const shelters = await Shelter.find();
+    res.status(200).json(shelters);
+}
+
 module.exports = {
     add
 }

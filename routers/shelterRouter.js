@@ -6,5 +6,6 @@ const { auth } = require('../middlewares/auth');
 const router = express.Router();
 
 router.post("/add", auth, controller.add);
+router.get("/", controller.all);
 
 exports.router = router;
