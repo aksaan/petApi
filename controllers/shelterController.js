@@ -8,6 +8,7 @@ const add = async (req, res) => {
     if (!ogrn || !title || !email) {
         return res.status(404).json({ error : 'missing required fields'});
     }
+    console.log(req.user);
     const owner = req.user._id;
     const sameOwner = await Shelter.findOne({ owner });
     if (sameOwner){
