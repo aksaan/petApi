@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 
 app.use("/users", userRouter);
-app.use("/shelter", shelterRouter);
+app.use("/shelters", shelterRouter);
 
 async function main() {
     
