@@ -24,7 +24,7 @@ const shelter = async (req, res) => {
     const id = req.params.id;
     const shelter = await Shelter.findById(id);
         
-    if(!shelter) return res.status(200).json(shelter);
+    if(shelter) return res.status(200).json(shelter);
 
     return res.status(404).json({ error : 'shelter not found'});
 }
