@@ -36,7 +36,7 @@ const all = async (req, res) => {
 
 const remove = async (req, res) => {
     const shelter = await Shelter.findOneAndDelete(req.body);
-    res.status(204).json(shelter);
+    res.status(202).json(shelter);
 }
 
 module.exports = {
