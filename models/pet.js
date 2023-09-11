@@ -7,18 +7,15 @@ const petsSchema = new Schema ({
         minLength : 5,
         maxLength : 50,
     },
-    location : {
-        type : String,
-        length : 50
-    },
     info : {
         type : String,
         length : 300,
     },
-    file : {
+    images : {
         type: String, 
-        required: trueы
-    }
+        required: true,
+    },
+
 })
 
 const pets = mongoose.model("Pets", petsSchema);
