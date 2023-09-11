@@ -42,6 +42,14 @@ const signin = async (req, res) => {
     res.status(200).json({ token });
     
 }
+
+const me = async (req, res) => {
+    const id = req.user.id;
+    const user = await User.findById(id);
+    if(!user) return res.status(404).json({ message : 'not found' });
+    return res.status(200).json(user);
+}
+
 const deleteUser = async (req, res) => {
     User.destroy({id:req.params.id}).exec(function(err){
         if(err){
@@ -50,11 +58,6 @@ const deleteUser = async (req, res) => {
         res.redirect('/users/:id/delete');
     });
 }
-
-// const id = await User.findOne({ id });
-// console.log(id);
-// const users = await User.findOne({ id });
-// res.status(200).json(users);
 
 const user = async (req, res) => {
     let id = req.params.id;
@@ -74,6 +77,7 @@ module.exports = {
     signup,
     profile,
     all,
+    me,
     deleteUser,
     user
 }
