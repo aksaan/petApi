@@ -25,6 +25,8 @@ const signin = async (req, res) => {
     if(!req.body) return res.status(400).json({ error : 'No data' });
 
     const { email, password} = req.body;
+    console.log(`Попытка авторизации: ${email}, ${password}`);
+
 
     const user = await User.findOne({ email });
     if(!user){
