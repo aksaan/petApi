@@ -1,11 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require('cors')
+const cors = require('cors');
 
 const userRouter = require("./routers/userRouter").router;
 const shelterRouter = require("./routers/shelterRouter").router;
 
 const app = express();
+app.use((req, res) => {
+    console.log(`Выполняется запрос с ${req.url}`);
+    console.log(`Заголовки ${req.headers}`);
+})
 app.use(cors());
 app.use(express.json());
 
