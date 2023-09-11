@@ -14,13 +14,13 @@ const add = async (req, res) => {
         return res.status(409).json({ error : 'shelter with same owner already registered'});
     }
 
-    const newOwner= new Shelter({ owner, email, ogrn, title, phone});
-    await newOwner.save();
+    const shelter= new Shelter({ owner, email, ogrn, title, phone});
+    await shelter.save();
 
-    return res.status(201).json({ message : 'shelter successfully created' });
+    return res.status(201).json(shelter);
 }
 
-const shelter = async (req, res) => {
+const one = async (req, res) => {
     const id = req.params.id;
     const shelter = await Shelter.findById(id);
         
@@ -34,8 +34,14 @@ const all = async (req, res) => {
     res.status(200).json(shelters);
 }
 
+const remove = async (req, res) => {
+    const shelter = await Shelter.findOneAndDelete(req.body);
+    res.status(204).json(shelter);
+}
+
 module.exports = {
     add,
     all,
-    shelter
+    one,
+    remove
 }
