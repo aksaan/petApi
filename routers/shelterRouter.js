@@ -6,7 +6,7 @@ const { auth } = require('../middlewares/auth');
 const router = express.Router();
 
 router.get("/:id", controller.one);
-router.delete("/:id", controller.remove);
+router.delete("/:id", auth, controller.remove);
 router.post("/", auth, controller.add);
 router.get("/", controller.all);
 

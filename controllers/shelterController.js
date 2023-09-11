@@ -35,7 +35,11 @@ const all = async (req, res) => {
 }
 
 const remove = async (req, res) => {
-    const shelter = await Shelter.findOneAndDelete(req.body);
+    const id = req.params.id;
+    const shelter = await Shelter.findById(id);
+    if(!shelter) return res.status(404).json({ message : 'shelter not found' });
+    if(shelter.owner !== req.user.id) return res.status(403).json({ message : 'forbidden' });
+    await Shelter.deleteOne({ id });
     res.status(202).json(shelter);
 }
 
