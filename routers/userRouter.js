@@ -9,7 +9,7 @@ router.post("/signup", controller.signup);
 router.post("/signin", controller.signin);
 router.put("/profile", controller.profile);
 // router.put("/users/:id/delete", controller.deleteUser);
-router.get("/me", controller.me);
+router.get("/me", auth, controller.me);
 router.get("/", auth, controller.all)
 
 exports.router = router;
