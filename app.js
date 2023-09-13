@@ -4,6 +4,7 @@ const cors = require('cors');
 
 const userRouter = require("./routers/userRouter").router;
 const shelterRouter = require("./routers/shelterRouter").router;
+const petRouter = require("./routers/petRouter").router;
 
 const app = express();
 app.use(cors());
@@ -11,6 +12,7 @@ app.use(express.json());
 
 app.use("/users", userRouter);
 app.use("/shelters", shelterRouter);
+app.use("/pets", petRouter);
 
 async function main() {
     

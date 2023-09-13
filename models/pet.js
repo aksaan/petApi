@@ -15,7 +15,11 @@ const petsSchema = new Schema ({
         type: String, 
         required: true,
     },
-
+    shelter : {
+        type : Schema.Types.ObjectId,
+        ref : "Shelter",
+        required : true,
+    }, 
 })
 
 const pets = mongoose.model("Pets", petsSchema);
