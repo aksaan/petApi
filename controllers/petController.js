@@ -9,7 +9,14 @@ const add = async (req, res) => {
     if (!name || !info) {
         return res.status(404).json({ error : 'missing required fields'});
     }
-    return res.status(201).json({ message : 'pet successfully created' });
+    const owner = req.user.id;
+    const shelter = await Shelter.findOne({ owner });
+    if(!shelter) return res.status(403).json({ message : 'forbidden' });
+
+    const pet= new Pet({ name, info, images, shelter });
+    await pet.save();
+
+    return res.status(201).json(pet);
 }
 
 const all = async (req, res) => {
