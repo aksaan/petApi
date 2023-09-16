@@ -6,7 +6,7 @@ const Pet = require('../models/pet')
 
 const add = async (req, res) => {
     const { name, info, images } = req.body;
-    if (!name || !info || !images) {
+    if (!name || !info) {
         return res.status(404).json({ error : 'missing required fields'});
     }
     return res.status(201).json({ message : 'pet successfully created' });
