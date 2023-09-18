@@ -7,8 +7,8 @@ const shelterRouter = require("./routers/shelterRouter").router;
 const petRouter = require("./routers/petRouter").router;
 
 const app = express();
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 app.use((req, res, next) => {
     console.log(req.body);
     console.log(req.headers);
