@@ -19,6 +19,11 @@ const petsSchema = new Schema ({
         type : Schema.Types.ObjectId,
         ref : "Shelter",
         required : true,
+    },
+    type : {
+        type : Schema.Types.ObjectId,
+        ref : "PetType",
+        required : true,
     }, 
 })
 
