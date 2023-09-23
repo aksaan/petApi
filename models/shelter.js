@@ -9,7 +9,8 @@ const shelterSchema = new Schema ({
     },
     ogrn : {
         type : Number,
-        length : 15
+        maxLength : 15,
+        minLength : 13,
     },
     phone : {
         type : Number,
