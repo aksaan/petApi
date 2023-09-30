@@ -21,20 +21,15 @@ const shelterSchema = new Schema ({
         minLength : 5,
         maxLength : 100,
     },
-    address : {
+    desription : {
         type : String,
-        minLength : 8,
-        maxLength : 100,
+        maxLength : 300,
     },
     owner : {
         type : Schema.Types.ObjectId,
         ref : "User",
         required : true,
-    }, 
-    desription : {
-        type : String,
-        maxLength : 300,
-    }
+    } 
 })
 
 const Shelter = mongoose.model("Shelter", shelterSchema);
