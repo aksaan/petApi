@@ -4,6 +4,7 @@ const Shelter = require('../models/shelter');
 const User = require('../models/user');
 
 const add = async (req, res) => {
+    console.log(req.file)
     const { ogrn, title, email, phone, desription } = req.body;
     if (!ogrn || !title || !email) {
         return res.status(404).json({ error : 'missing required fields'});
