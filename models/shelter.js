@@ -30,7 +30,7 @@ const shelterSchema = new Schema ({
         ref : "User",
         required : true,
     },
-    images : {
+    avatar : {
         type: String, 
         required: true,
     }
