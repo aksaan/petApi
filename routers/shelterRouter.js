@@ -9,7 +9,8 @@ const router = express.Router();
 
 router.get("/:id", controller.one);
 router.delete("/:id", auth, controller.remove);
-router.post("/", auth, upload.single("avatar"), controller.add);
+router.post("/", auth, controller.add);
+router.put("/:id/avatar", auth, upload.single("avatar"), controller.avatar);
 router.get("/", controller.all);
 
 exports.router = router;

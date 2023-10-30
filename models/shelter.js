@@ -29,7 +29,11 @@ const shelterSchema = new Schema ({
         type : Schema.Types.ObjectId,
         ref : "User",
         required : true,
-    } 
+    },
+    images : {
+        type: String, 
+        required: true,
+    }
 })
 
 const Shelter = mongoose.model("Shelter", shelterSchema);

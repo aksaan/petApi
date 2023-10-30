@@ -21,6 +21,16 @@ const add = async (req, res) => {
     return res.status(201).json(shelter);
 }
 
+const avatar = async (req, res) => {
+    if(!req.file) return res.status(401).json({ error : "no file" });
+    const avatar = req.file;
+    const id = req.params.id
+    const shelter = await Shelter.findById(id);
+    if(shelter.owner.valueOf() !== req.user.id) return res.status(403).json({ message : 'forbidden' });
+    const result = await Shelter.updateOne({id}, {avatar : avatar.path})
+    if (result) return res.status(200).json({message : 'successfully changed'})
+}
+
 const one = async (req, res) => {
     const id = req.params.id;
     const shelter = await Shelter.findById(id);
@@ -50,5 +60,6 @@ module.exports = {
     add,
     all,
     one,
-    remove
+    remove,
+    avatar
 }
