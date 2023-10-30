@@ -23,13 +23,16 @@ const add = async (req, res) => {
 
 const avatar = async (req, res) => {
     if(!req.file) return res.status(401).json({ error : "no file" });
+
     const avatar = req.file;
-    const id = req.params.id
+    const id = req.params.id;
     const shelter = await Shelter.findById(id);
-    console.log(shelter.owner.valueOf(), req.user.id)
+
     if(shelter.owner.valueOf() !== req.user.id) return res.status(403).json({ message : 'forbidden' });
-    const result = await Shelter.updateOne({id}, {avatar : avatar.path})
-    if (result) return res.status(200).json({message : 'successfully changed'})
+
+    await Shelter.updateOne({_id : id}, {avatar : avatar.path});
+
+    return res.status(200).json({message : 'successfully changed'})
 }
 
 const one = async (req, res) => {
