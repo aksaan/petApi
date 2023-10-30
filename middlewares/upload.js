@@ -8,8 +8,17 @@ const storage = multer.diskStorage({
     }
 })
 
+const imagesFilter = (req, file, cb) => {
+    if (file.mimetype.startsWith("image/")) {
+        cb(null, true)
+    }
+    else {
+        cb(new Error("Недопустимый тип файла"))
+    }
+}
 
-const upload = multer({storage})
+
+const upload = multer({storage, fileFilter : imagesFilter})
 
 module.exports = {
     upload
