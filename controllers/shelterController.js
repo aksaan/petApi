@@ -53,7 +53,7 @@ const remove = async (req, res) => {
     
     if(shelter.owner.valueOf() !== req.user.id) return res.status(403).json({ message : 'forbidden' });
 
-    await Shelter.deleteOne({ id });
+    await Shelter.deleteOne({ _id : id });
     res.status(202).json(shelter);
 }
 
