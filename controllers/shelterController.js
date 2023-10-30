@@ -26,6 +26,7 @@ const avatar = async (req, res) => {
     const avatar = req.file;
     const id = req.params.id
     const shelter = await Shelter.findById(id);
+    console.log(shelter.owner.valueOf(), req.user.id)
     if(shelter.owner.valueOf() !== req.user.id) return res.status(403).json({ message : 'forbidden' });
     const result = await Shelter.updateOne({id}, {avatar : avatar.path})
     if (result) return res.status(200).json({message : 'successfully changed'})
