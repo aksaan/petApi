@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
 
-app.use("/static", express.static(__dirname + "/uploads"))
+app.use("/uploads", express.static(__dirname + "/uploads"))
 app.use((req, res, next) => {
     console.log(req.body);
     console.log(req.headers);
