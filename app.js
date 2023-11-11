@@ -10,6 +10,9 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
+
+
+app.use(express.static("uploads"))
 app.use((req, res, next) => {
     console.log(req.body);
     console.log(req.headers);
