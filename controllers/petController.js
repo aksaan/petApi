@@ -1,7 +1,6 @@
 const bcrypt = require('bcrypt');
 
 const Shelter = require('../models/shelter');
-const User = require('../models/user');
 const Pet = require('../models/pet')
 
 const add = async (req, res) => {
