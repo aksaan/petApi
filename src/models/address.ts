@@ -1,5 +1,15 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import mongoose, { Schema, Document } from "mongoose";
+
+export interface IAddress extends Document {
+    region : string,
+    city : string,
+    street : string,
+    house : string,
+    flat : number,
+    description : string,
+    shelter : Schema.Types.ObjectId,
+    isMain : boolean,
+}
 
 const addressSchema = new Schema ({
     region : {
@@ -20,7 +30,7 @@ const addressSchema = new Schema ({
         length : 5,
     },
     flat : {
-        type : String,
+        type : Number,
         length : 5,
     }, 
     description : {
@@ -38,6 +48,6 @@ const addressSchema = new Schema ({
     },
 })
 
-const Address = mongoose.model("Address", addressSchema);
+const Address = mongoose.model<IAddress>("Address", addressSchema);
 
-module.exports = Address;
+export default Address;

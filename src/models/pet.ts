@@ -1,5 +1,12 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import mongoose, { Schema, Document } from "mongoose";
+
+export interface IPet extends Document {
+    name : string,
+    info : string,
+    images : string,
+    shelter : Schema.Types.ObjectId,
+    type : Schema.Types.ObjectId,
+}
 
 const petsSchema = new Schema ({
     name : {
@@ -27,6 +34,6 @@ const petsSchema = new Schema ({
     }, 
 })
 
-const Pet = mongoose.model("Pet", petsSchema);
+const Pets = mongoose.model<IPet>("Pets", petsSchema);
 
-module.exports = Pet;
+export default Pets;

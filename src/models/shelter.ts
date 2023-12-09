@@ -1,5 +1,14 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import mongoose, { Schema, Document } from "mongoose";
+
+export interface IShelter extends Document {
+    title : string,
+    ogrn : number,
+    phone : number,
+    email : string,
+    desription : string,
+    owner : Schema.Types.ObjectId,
+    avatar : string,
+}
 
 const shelterSchema = new Schema ({
     title : {
@@ -36,6 +45,6 @@ const shelterSchema = new Schema ({
     }
 })
 
-const Shelter = mongoose.model("Shelter", shelterSchema);
+const Shelter = mongoose.model<IShelter>("Shelter", shelterSchema);
 
-module.exports = Shelter;
+export default Shelter;
